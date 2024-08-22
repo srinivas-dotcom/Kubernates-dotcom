@@ -2,12 +2,12 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: nginx-service
+  name: <Name Of the Service> 
 spec:
-  selector:
-    app.kubernetes.io/name: proxy
+  type: NodePort
   ports:
-  - name: name-of-service-port
-    protocol: TCP
-    port: 80
-    targetPort: http-web-svc
+  - port: 80          # Port exposed within the cluster
+    targetPort: 8080  # Port on the pods
+    nodePort: 30000   # Port accessible externally on each node
+  selector:
+    app: example-app  # Select pods with this label
